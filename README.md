@@ -11,9 +11,9 @@ Finally, for those interested in performing AA simulations of condensates, we re
 MOFF configurations to all-atom (AA) structures (see OpenABC, https://github.com/ZhangGroup-MITChemistry/OpenABC).
 
 # MOFF Simulations ----------------------------------------------------------------------------------------------
-// MOFF simulations are used to set up initial configuration of the cluster
-// Found in: simulation/MOFF
-// Run energy minimization / equilibration at NPT of polyV
+## MOFF simulations are used to set up initial configuration of the cluster
+## Found in: simulation/MOFF
+## Run energy minimization / equilibration at NPT of polyV
 gmx_mpi grompp -f min.mdp -c start.gro -p polyV.top -o min.tpr
 gmx_mpi grompp -f eq.mdp -c min.gro -p polyV.top -o eq.tpr  -maxwarn 1
 # Run energy minimization / equilibration at NVT
