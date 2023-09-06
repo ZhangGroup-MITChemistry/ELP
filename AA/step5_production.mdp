@@ -1,0 +1,40 @@
+define      = -DUSE_MODIFIED_TIP3P_EPS
+integrator              = md
+dt                      = 0.002
+nsteps                  = 125000000
+nstvout                 = 5000000
+nstfout                 = 5000000
+nstcalcenergy           = 100
+nstenergy               = 1000
+nstlog                  = 10000
+nstxout-compressed      = 50000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+rlist                   = 1.2
+rcoulomb                = 1.2
+coulombtype             = pme
+;
+tcoupl                  = Nose-Hoover
+tc_grps                 = Protein non-Protein
+tau_t                   = 1.0 1.0
+ref_t                   = 313.15 313.15
+;
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = semiisotropic
+tau_p                   = 2.0
+compressibility         = 0 4.5e-5
+ref_p                   = 1.0 1.0
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+continuation            = yes
+;
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = Protein non-Protein
+;

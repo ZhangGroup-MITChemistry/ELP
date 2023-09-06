@@ -1,0 +1,36 @@
+define                  = -DPOSRES -DPOSRES_FC_BB=400.0 -DPOSRES_FC_SC=40.0 -DUSE_MODIFIED_TIP3P_EPS
+integrator              = md
+dt                      = 0.001
+nsteps                  = 100000
+nstxtcout               = 10000
+nstvout                 = 10000
+nstfout                 = 10000
+nstcalcenergy           = 100
+nstenergy               = 1000
+nstlog                  = 1000
+;
+cutoff-scheme           = Verlet
+nstlist                 = 20
+rlist                   = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw_switch             = 1.0
+rvdw                    = 1.2
+coulombtype             = pme
+rcoulomb                = 1.2
+;
+tcoupl                  = Nose-Hoover
+tc_grps                 = Protein non-Protein
+tau_t                   = 1.0 1.0
+ref_t                   = 313.15 313.15
+;
+constraints             = h-bonds
+constraint_algorithm    = LINCS
+;
+nstcomm                 = 100
+comm_mode               = linear
+comm_grps               = Protein non-Protein
+;
+gen-vel                 = yes
+gen-temp                = 313.15
+gen-seed                = -1
