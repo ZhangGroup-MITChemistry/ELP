@@ -1,0 +1,6 @@
+#include "prot_dna.itp"
+#include "polyV.itp"
+
+ [ molecules ]
+; name            #molec
+  polyV  40

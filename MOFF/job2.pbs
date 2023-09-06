@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=V10
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH --partition=sched_mit_binz
+#SBATCH --time=48:00:00
+#SBATCH --mem-per-cpu=4G
+#SBATCH --constraint=centos7
+
+module load engaging/openmpi/2.0.3
+
+
+export dir=/home/aplatham2/Programs/gromacs-2018.4/bin
+export tabledir=/pool001/aplatham2/ELP/MOFF_tables
+
+
+$dir/gmx_mpi grompp -f min.mdp -c eq.gro -p ELP.top -o min_eq.tpr
+$dir/gmx_mpi mdrun -deffnm min_eq -table $tabledir/table_150MOFF.xvg -tablep $tabledir/table_150smog.xvg
+
+$dir/gmx_mpi grompp -f eq3.mdp -c min_eq.gro -p ELP.top -o eq3.tpr  -maxwarn 1
+mpirun -np 1 $dir/gmx_mpi mdrun -deffnm eq3 -dlb yes -table $tabledir/table_150MOFF.xvg -tablep $tabledir/table_150smog.xvg -maxh 47.9 -noddcheck -rdd 4

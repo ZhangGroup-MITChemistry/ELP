@@ -1,0 +1,6 @@
+#include "prot_dna.itp"
+#include "V10.itp"
+
+ [ molecules ]
+; name            #molec
+  V10  40
